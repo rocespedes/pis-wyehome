@@ -5,21 +5,30 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+# Configured for use of local database.
 development:
   <<: *default
-  database: db/development.sqlite3
+  host: localhost
+  port: 5432
+  database: 'wyehome-dev'
+  user: wyehome
+  password: wyehome
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: db/test.sqlite3
+#
+# Matias Manrique: I comment these lines so we remmember to confgure them
+# before running the integration tests and production deployment.
+# Delete this comment once this is correctly configured!
+#test:
+#  <<: *default
+#  database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+#production:
+#  <<: *default
+#  database: db/production.sqlite3
