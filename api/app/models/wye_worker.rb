@@ -1,0 +1,2 @@
+class WyeWorker < ApplicationRecord
+end
