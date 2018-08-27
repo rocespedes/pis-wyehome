@@ -25,9 +25,10 @@ development:
 # Matias Manrique: I comment these lines so we remmember to confgure them
 # before running the integration tests and production deployment.
 # Delete this comment once this is correctly configured!
-#test:
-#  <<: *default
-#  database: db/test.sqlite3
+test:
+  <<: *default
+  adapter: sqlite3
+  database: db/test.sqlite3
 
 #production:
 #  <<: *default
