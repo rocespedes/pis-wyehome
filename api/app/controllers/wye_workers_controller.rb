@@ -17,11 +17,17 @@ class WyeWorkersController < ApplicationController
   def create
     @wye_worker = WyeWorker.new(wye_worker_params)
 
-    if @wye_worker.save
-      render json: @wye_worker, status: :created, location: @wye_worker
+    if WyeWorker.exists?(uid: params[:uid])
+      @find_wye_worker = WyeWorker.find_by(uid: params[:uid])
+      render json: @find_wye_worker, status: :created, location: @find_wye_worker
     else
-      render json: @wye_worker.errors, status: :unprocessable_entity
+      if @wye_worker.save
+        render json: @wye_worker, status: :created, location: @wye_worker
+      else
+        render json: @wye_worker.errors, status: :unprocessable_entity
+      end
     end
+
   end
 
   # PATCH/PUT /wye_workers/1
